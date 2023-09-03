@@ -1,0 +1,39 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Ashiq",
+      "email": "ash@gmail.com",
+      "password": "cherty",
+      "city": "chennai"
+    },
+    {
+      "id": 2,
+      "name": "Raja",
+      "email": "raj@gmail.com",
+      "password": "baerty",
+      "city": "bangalore"
+    },
+    {
+      "id": 3,
+      "name": "Arun",
+      "email": "arun@gmail.com",
+      "password": "coerty",
+      "city": "coimabatore"
+    },
+    {
+      "id": 4,
+      "name": "Vicky",
+      "email": "vicky@gmail.com",
+      "password": "trerty",
+      "city": "trichy"
+    },
+    {
+      "id": 5,
+      "name": "Vijay",
+      "email": "vijay@gmail.com",
+      "password": "maerty",
+      "city": "madurai"
+    }
+  ]
+}

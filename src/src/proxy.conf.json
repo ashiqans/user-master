@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://rajarajanshan115.bsite.net",
+    "secure": false
+  }
+}
