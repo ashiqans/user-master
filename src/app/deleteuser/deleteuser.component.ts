@@ -5,14 +5,16 @@ import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-deleteuser',
   templateUrl: './deleteuser.component.html',
-  styleUrls: ['./deleteuser.component.scss'],
+  styleUrls: ['./deleteuser.component.scss']
 })
 export class DeleteuserComponent {
   userData: any = [];
   columnNames: any;
   isLoading: boolean = false;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+
+  }
 
   ngOnInit(): void {
     this.getUserList();
@@ -20,14 +22,15 @@ export class DeleteuserComponent {
 
   getUserList(): void {
     this.isLoading = false;
-    this.userService.getUsers().subscribe((res) => {
+    this.userService.getUsers().subscribe(res => {
       if (res && res?.status == 1) {
+        console.log(res)
         this.columnNames = Object.keys(res?.user_details[0]);
         this.columnNames.push('Action');
         this.userData = [...res?.user_details];
         this.isLoading = true;
       }
-    });
+    })
   }
 
   capitalize(s: string): string {
@@ -36,12 +39,13 @@ export class DeleteuserComponent {
 
   delete(element: any) {
     let payload = {
-      userid: element?.userid,
-    };
-    this.userService.deleteUser(payload).subscribe((res) => {
+      userid: element?.userid
+    }
+    this.userService.deleteUser(payload).subscribe(res => {
       if (res && res?.status == 1) {
         this.getUserList();
       }
-    });
+    })
   }
+
 }

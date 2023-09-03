@@ -12,7 +12,7 @@
     </mat-form-field>
     <mat-form-field class="form">
       <mat-label>Email Id</mat-label>
-      <input type="email" matInput placeholder="Enter Email" formControlName="email" />
+      <input type="email" matInput placeholder="Enter Email" formControlName="email" readonly />
       <mat-error *ngIf="
           newUser?.['email']?.touched && newUser?.['email']?.errors?.['required']
         ">
@@ -36,8 +36,9 @@
     </mat-form-field>
     <mat-form-field class="form">
       <mat-label>Password</mat-label>
-      <input type="password" matInput placeholder="Enter password" formControlName="password" minlength="6"
-        maxlength="14" />
+      <input [type]="viewPassword ? 'text' : 'password'" matInput placeholder="Enter password"
+        formControlName="password" minlength="6" maxlength="14" />
+      <mat-icon matSuffix (click)="togglePasswordVisibility()">visibility</mat-icon>
       <mat-error *ngIf="
           newUser?.['password']?.touched &&
           newUser?.['password']?.errors?.['required']
@@ -72,7 +73,7 @@
   <div class="action">
     <button mat-stroked-button color="primary" id="saveButton" (click)="saveUser()" id="add"
       [disabled]="!addUserForm.valid">
-      Save
+      Update
     </button>
     <button mat-stroked-button color="accent" id="saveButton" (click)="cancel()">
       Cancel

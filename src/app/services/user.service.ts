@@ -17,7 +17,6 @@ export interface User {
 })
 export class UserService {
   baseURL: string = 'https://rajarajanshan115.bsite.net';
-
   private authorBook = new BehaviorSubject([]);
   private getAuthorBooks = this.authorBook.asObservable();
 

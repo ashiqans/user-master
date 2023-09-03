@@ -9,6 +9,7 @@ import { UserService } from '../services/user.service';
 })
 export class AdduserComponent {
   addUserForm!: FormGroup;
+  viewPassword: boolean = false;
 
   constructor(private userService: UserService, private formBuilder: FormBuilder) { }
 
@@ -49,6 +50,10 @@ export class AdduserComponent {
         this.addUserForm.reset();
       }
     })
+  }
+
+  togglePasswordVisibility() {
+    this.viewPassword = !this.viewPassword;
   }
 
   cancel() {

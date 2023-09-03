@@ -15,12 +15,12 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
   isLoggedIn: boolean = false;
-  baseURL: string = 'https://rajarajanshan115.bsite.net';
+  baseURL: string = "https://rajarajanshan115.bsite.net";
 
   constructor(private http: HttpClient, private router: Router) {
-    const currentUser: any = sessionStorage.getItem('authToken');
-    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(currentUser));
+    this.currentUserSubject = new BehaviorSubject<any>('');
     this.currentUser = this.currentUserSubject.asObservable();
+    this.isLoggedIn = sessionStorage.getItem('isLoggedIn') == 'true' ? true : false;
   }
 
   public get currentUserValue(): any {
@@ -28,22 +28,20 @@ export class AuthenticationService {
   }
 
   login(userObj: any) {
-    return this.http.post(`${this.baseURL}/login`, userObj).pipe(
-      map((user: any) => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        this.isLoggedIn = true;
-        sessionStorage.setItem('authToken', JSON.stringify(user?.token));
-        this.currentUserSubject.next(user);
+    return this.http.post(`${this.baseURL}/api/login`, userObj)
+      .pipe(map((user: any) => {
+        let jwtToken = user?.jwtToken;
+        sessionStorage.setItem('authToken', jwtToken);
+        sessionStorage.setItem('isLoggedIn', 'true');
+        this.currentUserSubject.next(jwtToken);
         return user;
-      })
-    );
+      }));
   }
 
   logout() {
     // remove user from local storage to log user out
     sessionStorage.removeItem('authToken');
-    this.isLoggedIn = false;
-    this.currentUserSubject.unsubscribe();
+    sessionStorage.setItem('isLoggedIn', 'false');
     this.router.navigate(['login']);
   }
 }
