@@ -1,3 +1,17 @@
+.toolbar {
+  display: flex;
+  height: 3em;
+  align-items: center;
+  text-align: center;
+  background-color: #1976d2;
+  color: white;
+  font: 24px 600;
+
+  h2 {
+    margin: auto;
+  }
+}
+
 mat-card {
   max-width: 25em;
   margin: 2em auto;
