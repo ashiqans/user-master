@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-edituser',
   templateUrl: './edituser.component.html',
-  styleUrls: ['./edituser.component.scss']
+  styleUrls: ['./edituser.component.scss'],
 })
 export class EdituserComponent {
   userData: any = [];
@@ -14,9 +14,10 @@ export class EdituserComponent {
   editUser: boolean = false;
   isLoading: boolean = false;
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder) {
-
-  }
+  constructor(
+    private userService: UserService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.getUserList();
@@ -24,15 +25,14 @@ export class EdituserComponent {
 
   getUserList(): void {
     this.isLoading = false;
-    this.userService.getUsers().subscribe(res => {
+    this.userService.getUsers().subscribe((res) => {
       if (res && res?.status == 1) {
-        console.log(res)
         this.columnNames = Object.keys(res?.user_details[0]);
         this.columnNames.push('Action');
         this.userData = [...res?.user_details];
         this.isLoading = true;
       }
-    })
+    });
   }
 
   capitalize(s: string): string {
@@ -47,7 +47,7 @@ export class EdituserComponent {
       mobile: ['', Validators.required],
       password: ['', Validators.required],
       city: ['', Validators.required],
-      id: ['']
+      id: [''],
     });
 
     this.addUserForm.patchValue({
@@ -56,8 +56,8 @@ export class EdituserComponent {
       mobile: element?.usermobnum,
       password: element?.userpassword,
       city: element?.usercity,
-      id: element?.userid
-    })
+      id: element?.userid,
+    });
   }
 
   get newUser() {
@@ -71,15 +71,15 @@ export class EdituserComponent {
       usermobnum: this.addUserForm?.get('mobile')?.value,
       useremail: this.addUserForm?.get('email')?.value,
       userpassword: this.addUserForm?.get('password')?.value,
-      usercity: this.addUserForm?.get('city')?.value
-    }
-    this.userService.updateUser(payload).subscribe(res => {
+      usercity: this.addUserForm?.get('city')?.value,
+    };
+    this.userService.updateUser(payload).subscribe((res) => {
       if (res && res?.status == 1) {
         this.addUserForm.reset();
         this.editUser = false;
         this.getUserList();
       }
-    })
+    });
   }
 
   cancel() {
@@ -88,7 +88,7 @@ export class EdituserComponent {
   }
 
   numberOnly(event: any): boolean {
-    const charCode = (event.which) ? event.which : event.keyCode;
+    const charCode = event.which ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
       return false;
     }

@@ -10,7 +10,7 @@ export interface TabItem {
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['./user.component.scss'],
 })
 export class UserComponent {
   showLogout: boolean = false;
@@ -21,31 +21,28 @@ export class UserComponent {
     {
       label: 'View User',
       route: 'viewuser',
-      icon: 'person'
+      icon: 'person',
     },
     {
       label: 'Add User',
       route: 'adduser',
-      icon: 'add'
+      icon: 'add',
     },
     {
       label: 'Edit User',
       route: 'edituser',
-      icon: 'edit'
+      icon: 'edit',
     },
     {
       label: 'Delete User',
       route: 'deleteuser',
-      icon: 'delete'
+      icon: 'delete',
     },
-  ]
+  ];
 
-  selectedTabChanged(event: any) {
-    console.log(event)
-  }
+  selectedTabChanged(event: any) {}
 
   logOut() {
     this.authService.logout();
   }
-
 }

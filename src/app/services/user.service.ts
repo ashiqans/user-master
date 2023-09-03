@@ -17,7 +17,7 @@ export interface User {
 })
 export class UserService {
   baseURL: string = 'https://rajarajanshan115.bsite.net';
-  // baseURL: string = 'http://localhost:3000';
+
   private authorBook = new BehaviorSubject([]);
   private getAuthorBooks = this.authorBook.asObservable();
 
@@ -25,7 +25,6 @@ export class UserService {
 
   getUsers(): Observable<any> {
     return this.http.get<User>(`${this.baseURL}/api/getuserlist`);
-    // return this.http.get<User>(`${this.baseURL}/user`);
   }
 
   addUser(payload: any): Observable<any> {
